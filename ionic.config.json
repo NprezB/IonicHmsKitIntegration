@@ -1,0 +1,7 @@
+{
+  "name": "HmsKitIntegration",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
