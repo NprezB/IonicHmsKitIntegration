@@ -14,7 +14,14 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button (click)="getPushToken()">Get Push Token</ion-button>
+    <ion-button (click)="logEvent('test', {message: 'hi'})">Send Analytics Event</ion-button>
+    <ion-button (click)="triggerMap()">Get A Map</ion-button>
+    <ion-button (click)="triggerAccount()">Account Login</ion-button>
+    <ion-button (click)="triggerAds()">Multiple Ads</ion-button>
+    <ion-button (click)="triggerLocation()">Get Location</ion-button>
+    <ion-button (click)="triggerPurchase()">Purchase Gems</ion-button>
+    <ion-button (click)="triggerDrive()">Check Drive</ion-button>
+    <ion-button (click)="triggerSite()">Search Sites</ion-button>
   </div>
 </ion-content>

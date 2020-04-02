@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+apply from: 'capacitor.build.gradle'
+apply plugin: 'com.huawei.agconnect'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.hmskitintegration.huawei"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        release {
+            storeFile file('key0.jks')
+            keyAlias 'key0'
+            keyPassword '2521997Nprez.'
+            storePassword '2521997Nprez.'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+            debuggable true
+        }
+    }
+}
+
+repositories {
+    maven {
+        url  "https://dl.bintray.com/ionic-team/capacitor"
+    }
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation project(':capacitor-android')
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(':capacitor-cordova-android-plugins')
+    implementation 'com.auth0:java-jwt:3.10.0'
+    implementation 'com.auth0:jwks-rsa:0.11.0'
+    implementation 'commons-codec:commons-codec:20041127.091804'
+
+    // HMS
+    implementation 'com.huawei.hms:push:3.0.3.301'
+    implementation 'com.huawei.hms:maps:4.0.0.301'
+    implementation 'com.huawei.hms:location:4.0.1.300'
+    implementation 'com.huawei.hms:hianalytics:4.0.1.300'
+    implementation 'com.huawei.hms:hwid:4.0.1.300'
+    implementation 'com.huawei.hms:ads-lite:13.4.28.305'
+    implementation 'com.huawei.hms:ads-consent:3.4.28.305'
+    implementation 'com.huawei.hms:location:4.0.1.300'
+    implementation 'com.huawei.hms:iap:4.0.1.300'
+    implementation 'com.huawei.hms:game:4.0.1.300'
+    implementation 'com.huawei.hms:hianalytics:4.0.1.300'
+    implementation 'com.huawei.hms:drive:4.0.0.301'
+    implementation 'com.huawei.hms:ml-computer-vision:1.0.2.300'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.guava:guava:23.5-android'
+    implementation 'com.huawei.hms:site:4.0.1.300'
+    implementation 'com.huawei.hms:wallet:2.0.0.300'
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.warn("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}
+
+agcp{
+    manifest false
+}
