@@ -1,8 +1,0 @@
-{
-  "appId": "com.hmskitintegration.huawei",
-  "appName": "HmsKitIntegration",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www",
-  "cordova": {}
-}
